@@ -1,5 +1,6 @@
 package com.sms.sms;
 
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,30 +11,35 @@ import java.util.Optional;
 public class StudentService {
 
     private final StudentRepository studentRepository;
-
+    private static final Logger logger = Logger.getLogger(StudentService.class.getName());
     @Autowired
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
-    public List<student> getAllStudents() {
+    public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
 
-    public Optional<student> getStudentById(Long id) {
+    public Optional<Student> getStudentById(Long id) {
         return studentRepository.findById(id);
     }
 
-    public student createStudent(student student) {
-        return studentRepository.save(student);
+    public Student createStudent(Student student) {
+        Student savedStudent=studentRepository.save(student);
+        logger.info("Student with ID " + savedStudent.getId() + " saved successfully.");
+        return savedStudent;
     }
 
-    public student updateStudent(student student) {
-        return studentRepository.save(student);
+    public Student updateStudent(Student student) {
+        Student updatedStudent = studentRepository.save(student);
+        logger.info("Student with ID " + updatedStudent.getId() + " updated successfully.");
+        return updatedStudent;
     }
 
     public void deleteStudentById(Long id) {
         studentRepository.deleteById(id);
+        logger.info("Student with ID " + id + " deleted successfully.");
     }
 }
 

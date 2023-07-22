@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class student {
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,14 +16,14 @@ public class student {
     private String phone;
 
     // Constructors, getters, setters, and other methods (if required)
-    public student(Long id, String name, String email, String phone) {
+    public Student(Long id, String name, String email, String phone) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
     }
 
-    public student() {
+    public Student() {
     }
 
     public Long getId() {
